@@ -1,4 +1,4 @@
 GUI Interface: 
-![image](https://github.com/LuckyTaorem/Student-Management-System-using-SpringBoot/assets/67669132/879bb928-ffe3-4825-919e-5e5a1d6da8ad)
+![Screenshot (321)](https://github.com/LuckyTaorem/Student-Management-System-using-SpringBoot/assets/67669132/550ba2ee-cd9c-4f51-a409-ad171fe04e0b)
+![Screenshot (322)](https://github.com/LuckyTaorem/Student-Management-System-using-SpringBoot/assets/67669132/15b5b658-16ed-4b3c-b1a4-0f447ca5a086)
 
-![image](https://github.com/LuckyTaorem/Student-Management-System-using-SpringBoot/assets/67669132/4ad1d4e3-1c4a-492c-a11d-c8910b4c6415)
