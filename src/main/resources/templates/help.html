@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Help</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="container">
+		<span class="float_left">
+			To view all the student: <span id="get">GET: <input type="text" id="help_input" disabled value="/api/student"></span>
+			<span id="eg" class="color_gray">Eg: <a th:text=${url}></a>api/student</span>
+			<br>
+			To view student by id: <span id="get">GET: <input type="text" id="help_input" disabled value="/api/student/{id}"></span>
+			<span id="eg" class="color_gray">Eg: <a th:text=${url}></a>api/student/12203018</span>
+			<br>
+			To Add new student: <span id="get">POST: <input type="text" id="help_input" disabled value="/api/student/new"></span>
+			<span id="get" class="color_gray">Header: (Content-type: application/json)</span>
+			<div id="get" class="color_gray">
+				<p>Body:</p>
+				<p>{</p>
+				<p class="body_child">"studentId":"STUDENT_ID",</p>
+				<p class="body_child">"firstName":"STUDENT_FIRSTNAME",</p>
+				<p class="body_child">"lastName":"STUDENT_LASTNAME",</p>
+				<p class="body_child">"course":"STUDENT_COURSENAME",</p>
+				<p class="body_child">"cgpa":"STUDENT_CGPA",</p>
+				<p class="body_child">"dob":"STUDENT_DOB"</p>
+				<p>}</p>
+				<br>
+				<p>Eg:</p>
+				<p>{</p>
+				<p class="body_child">"studentId":"12208382",</p>
+				<p class="body_child">"firstName":"Kunal",</p>
+				<p class="body_child">"lastName":"Yadav",</p>
+				<p class="body_child">"course":"CSE Btech",</p>
+				<p class="body_child">"cgpa":"7.6",</p>
+				<p class="body_child">"dob":"16/11/2003"</p>
+				<p>}</p>
+			</div>
+		</span>
+		<span class="float_right">
+			<button onclick="window.location.href='/'" style="float:right;padding: 5px;">Home Page</button>
+			<br>
+			To update student details: <span id="get">PUT: <input type="text" id="help_input" disabled value="/api/student/update/{id}"></span>
+			<span id="eg"class="color_gray">Eg: <a th:text=${url}></a>api/student/update/12203018</span>
+			<br>
+			<span id="get" class="color_gray">Header: (Content-type: application/json)</span>
+			<div id="get" class="color_gray">
+				<p>Body:</p>
+				<p>{</p>
+				<p class="body_child">"studentId":"STUDENT_ID",</p>
+				<p class="body_child">"firstName":"STUDENT_FIRSTNAME",</p>
+				<p class="body_child">"lastName":"STUDENT_LASTNAME",</p>
+				<p class="body_child">"course":"STUDENT_COURSENAME",</p>
+				<p class="body_child">"cgpa":"STUDENT_CGPA",</p>
+				<p class="body_child">"dob":"STUDENT_DOB"</p>
+				<p>}</p>
+			</div>
+			<br>
+			To delete student details: <span id="get">DELETE: <input type="text" id="help_input" disabled value="/api/student/delete/{id}"></span>
+			<span id="eg"class="color_gray">Eg: <a th:text=${url}></a>api/student/delete/12203018</span>
+		</span>
+	</div>
+
+</body>
+</html>

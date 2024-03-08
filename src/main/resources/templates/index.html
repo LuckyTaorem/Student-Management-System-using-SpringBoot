@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="container">
+		<div th:if="${param.query != null}" style="background-color: green;">
+			<p style="text-align: center; padding: 5px; color: white;" th:text=${param.query}></p>
+		</div>
+		
+		<div th:if="${param.error != null}" style="background-color: red;">
+			<p style="text-align: center; padding: 5px; color: white;" th:text=${param.error}></p>
+		</div>
+		
+		<h1>Student Management System</h1>
+		<div id="main_left">
+		<button onclick="window.location.href='help'" style="padding: 5px;">Help</button>
+		<button onclick="addStudent()" class="btn_dark" id="add">Add Student's Details</button>
+		<button onclick="updateStudent()" id="update">Update Student's Details</button>
+		<button onclick="deleteStudent()" id="delete">Delete Student's Details</button>
+		<button onclick="viewStudent()" id="view">Get All Student Details</button>
+		<button onclick="searchStudent()" id="search">Search Student Details</button>
+
+		</div>
+		<div id="main_right">
+		<form method="post" th:action="@{/student/new}" th:object="${Student}">
+		<table id="addStudent" class="table">
+			<tr>
+				<th colspan="2">Enter Student Details</th>
+			</tr>
+			<tr>
+				<td>ID: </td>
+				<td><input type="number" required field="*{studentId}" name="studentId"></td>
+			</tr>
+			<tr>
+				<td>First Name: </td>
+				<td><input type="text" field="*{firstName}" name="firstName"></td>
+			</tr>
+			<tr>
+				<td>Last Name: </td>
+				<td><input type="text" field="*{lastName}" name="lastName"></td>
+			</tr>
+			<tr>
+				<td>Course Name: </td>
+				<td><input type="text"field="*{course}" name="course"></td>
+			</tr>
+			<tr>
+				<td>DOB: </td>
+				<td><input type="date" field="*{dob}" name="dob"></td>
+			</tr>
+			<tr>
+				<td>CGPA: </td>
+				<td><input type="number" step="0.1" field="*{CGPA}" name="CGPA"></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center;"><input style="padding:10px;" type="submit" value="Submit"></td>
+			</tr>
+		</table>
+		</form>
+		
+		<form method="post" th:action="@{/student/update}" th:object="${student}">
+		<table id="updateStudent" class="table">
+			<tr>
+				<th colspan="2">Update Student Details By ID</th>
+			</tr>
+			<tr>
+				<td>ID: </td>
+				<td><input type="number" required field="*{studentId}" name="studentId"></td>
+			</tr>
+			<tr>
+				<td>First Name: </td>
+				<td><input type="text" field="*{firstName}" name="firstName"></td>
+			</tr>
+			<tr>
+				<td>Last Name: </td>
+				<td><input type="text" field="*{lastName}" name="lastName"></td>
+			</tr>
+			<tr>
+				<td>Course Name: </td>
+				<td><input type="text"field="*{course}" name="course"></td>
+			</tr>
+			<tr>
+				<td>DOB: </td>
+				<td><input type="date" field="*{dob}" name="dob"></td>
+			</tr>
+			<tr>
+				<td>CGPA: </td>
+				<td><input type="number" step="0.1" field="*{CGPA}" name="CGPA"></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center;"><input style="padding:10px;" type="submit" value="Submit"></td>
+			</tr>
+		</table>
+		</form>
+		
+		<form method="get" th:action="@{/student/delete/}" th:object="${student}">
+		<table id="deleteStudent" class="table">
+			<tr>
+				<th colspan="2">Delete Student Details By ID</th>
+			</tr>
+			<tr>
+				<td>ID: </td>
+				<td><input type="number" required field="*{studentId}" name="id"></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center;"><input style="padding:10px;" type="submit" value="Submit"></td>
+			</tr>
+		</table>
+		</form>
+		
+		<table id="viewStudent" class="table">
+			<th:block th:each="students : ${student}">
+			<tr>
+				<th colspan="2">All Student Details By ID</th>
+			</tr>
+			<tr>
+				<th>Student ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Course</th>
+				<th>DOB</th>
+				<th>CGPA</th>
+			</tr>
+			<tr>
+				<td th:text="${students.studentId}"></td>
+				<td th:text="${students.firstName}"></td>
+				<td th:text="${students.lastName}"></td>
+				<td th:text="${students.course}"></td>
+				<td th:text="${students.dob}"></td>
+				<td th:text="${students.cgpa}"></td>
+			</tr>
+			</th:block>
+		</table>
+		
+		<form method="get" th:action="@{/student/}" th:object="${student}">
+		<table id="searchStudent" class="table">
+			<tr>
+				<th colspan="2">Search Student Details By ID</th>
+			</tr>
+			<tr>
+				<td>ID: </td>
+				<td><input type="number" required field="*{studentId}" name="id"></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center;"><input style="padding:10px;" type="submit" value="Submit"></td>
+			</tr>
+		</table>
+		</form>
+		
+		</div>
+
+	</div>
+	<script>
+		function addStudent(){
+			document.getElementById("updateStudent").style.display="none";
+			document.getElementById("addStudent").style.display="block";
+			document.getElementById("deleteStudent").style.display="none";
+			document.getElementById("viewStudent").style.display="none";
+			document.getElementById("searchStudent").style.display="none";
+			
+			var add = document.getElementById("add");
+			add.classList.add('btn_dark');
+			
+			var update = document.getElementById("update");
+			update.classList.remove('btn_dark');
+			
+			var delete_btn = document.getElementById("delete");
+			delete_btn.classList.remove('btn_dark');
+			
+			var view = document.getElementById("view");
+			view.classList.remove('btn_dark');
+			
+			var search = document.getElementById("search");
+			search.classList.remove('btn_dark');
+		}
+		function updateStudent(){
+			document.getElementById("addStudent").style.display="none";
+			document.getElementById("updateStudent").style.display="block";
+			document.getElementById("deleteStudent").style.display="none";
+			document.getElementById("viewStudent").style.display="none";
+			document.getElementById("searchStudent").style.display="none";
+			
+			var add = document.getElementById("add");
+			add.classList.remove('btn_dark');
+			
+			var update = document.getElementById("update");
+			update.classList.add('btn_dark');
+			
+			var delete_btn = document.getElementById("delete");
+			delete_btn.classList.remove('btn_dark');
+			
+			var view = document.getElementById("view");
+			view.classList.remove('btn_dark');
+			
+			var search = document.getElementById("search");
+			search.classList.remove('btn_dark');
+			
+		}
+		function deleteStudent(){
+			document.getElementById("deleteStudent").style.display="block";
+			document.getElementById("updateStudent").style.display="none";
+			document.getElementById("addStudent").style.display="none";
+			document.getElementById("viewStudent").style.display="none";
+			document.getElementById("searchStudent").style.display="none";
+			
+			var add = document.getElementById("add");
+			add.classList.remove('btn_dark');
+			
+			var update = document.getElementById("update");
+			update.classList.remove('btn_dark');
+			
+			var delete_btn = document.getElementById("delete");
+			delete_btn.classList.add('btn_dark');
+			
+			var view = document.getElementById("view");
+			view.classList.remove('btn_dark');
+			
+			var search = document.getElementById("search");
+			search.classList.remove('btn_dark');
+			
+		}
+		function viewStudent(){
+			document.getElementById("deleteStudent").style.display="none";
+			document.getElementById("updateStudent").style.display="none";
+			document.getElementById("addStudent").style.display="none";
+			document.getElementById("viewStudent").style.display="block";
+			document.getElementById("searchStudent").style.display="none";
+			
+			var add = document.getElementById("add");
+			add.classList.remove('btn_dark');
+			
+			var update = document.getElementById("update");
+			update.classList.remove('btn_dark');
+			
+			var delete_btn = document.getElementById("delete");
+			delete_btn.classList.remove('btn_dark');
+			
+			var view = document.getElementById("view");
+			view.classList.add('btn_dark');
+			
+			var search = document.getElementById("search");
+			search.classList.remove('btn_dark');
+			
+			window.location.href='/api/student';
+		}
+		function searchStudent(){
+			document.getElementById("deleteStudent").style.display="none";
+			document.getElementById("updateStudent").style.display="none";
+			document.getElementById("addStudent").style.display="none";
+			document.getElementById("viewStudent").style.display="none";
+			document.getElementById("searchStudent").style.display="block";
+			
+			var add = document.getElementById("add");
+			add.classList.remove('btn_dark');
+			
+			var update = document.getElementById("update");
+			update.classList.remove('btn_dark');
+			
+			var delete_btn = document.getElementById("delete");
+			delete_btn.classList.remove('btn_dark');
+			
+			var view = document.getElementById("view");
+			view.classList.remove('btn_dark');
+			
+			var search = document.getElementById("search");
+			search.classList.add('btn_dark');
+		}
+	</script>
+</body>
+</html>

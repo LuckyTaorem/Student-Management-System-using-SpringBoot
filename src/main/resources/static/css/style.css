@@ -1,0 +1,82 @@
+*{
+	padding: 0;
+	margin:0;
+	font-family: sans-serif;
+}
+body{
+	display: flex;
+	height: 100vh;
+	margin:0;
+}
+#container{
+	margin:auto;
+	width: 800px;
+	background-image: linear-gradient(90deg,rgb(153, 153, 153),white,rgb(153, 153, 153));
+	box-shadow: 0 0 10px black;
+	border-radius: 10px;
+	padding: 20px;
+}
+h1{
+	text-align: center;
+}
+#help_input{
+	padding: 3px;
+}
+#get{
+	display: block;
+	margin-left: 40px;
+}
+.color_gray{
+	color: rgb(52, 52, 52);
+}
+.body_child{
+	margin-left:20px;
+}
+.float_left{
+	float: left;
+	width:47%;
+	padding:10px;
+}
+.float_right{
+	float: right;
+	width: 47%;
+	padding: 10px;
+}
+.table td{
+	padding:10px;
+	text-align: right;
+	border:1px solid black;
+}
+.table th{
+	border:1px solid black;
+	padding:10px;
+}
+.table{
+	margin:30px auto;
+	width: fit-content;	
+	height: fit-content;
+}
+#updateStudent,#deleteStudent,#viewStudent,#searchStudent{
+	display: none;
+}
+#main_left{
+	float: left;
+	width: 200px;
+	margin-top:30px;
+}
+.btn_dark{
+	background-color: gray;
+	color:white;
+	border: none;
+}
+#add,#update,#search,#delete,#view{
+	width: 200px;
+	height: 50px;
+	margin:10px 0;
+}
+#main_right{
+	float:right;
+}
+#eg{
+	display: block;
+}

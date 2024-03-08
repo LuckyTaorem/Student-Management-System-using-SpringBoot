@@ -1,0 +1,13 @@
+create database StudentManager;
+use StudentManager;
+
+create table student(
+student_id int primary key,
+first_name varchar(255),
+last_name varchar(255),
+course varchar(255),
+dob varchar(255),
+cgpa double
+);
+
+select * from student;
